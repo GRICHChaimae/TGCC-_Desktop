@@ -33,4 +33,15 @@ const addEmploye = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { addEmploye }
+const allEmployees = asyncHandler(async (req, res) => {
+    const employees = await Employees.find({}, { password: 0 });
+
+    if (employees) {
+        res.send(employees);
+    } else {
+        res.json({ message: 'no employees'})
+    }
+})
+
+
+module.exports = { addEmploye, allEmployees }
